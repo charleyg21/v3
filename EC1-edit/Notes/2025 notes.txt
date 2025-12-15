@@ -1,0 +1,13 @@
+With bootloader:
+bsp/Core/Src/system_stm32g0xx.c -> 135: 0x00010000U
+bsp/STM32G0B1RCTx_FLASH.ld -> 65: FLASH (rx)      : ORIGIN = 0x8010000, LENGTH = 192K
+
+Without bootloader:
+bsp/Core/Src/system_stm32g0xx.c -> 135: 0x00000000U
+bsp/STM32G0B1RCTx_FLASH.ld -> 65: FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 192K
+
+Debugging:
+./rebuild.sh
+openocd -f interface/stlink.cfg -f target/stm32g0x.cfg
+cd build
+gdb-multiarch -tui -x openocd-run.gdb

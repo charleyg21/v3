@@ -1,0 +1,57 @@
+main issue -- overflow not implemented
+    safety feature: overflow valve implementation
+    2-second delay or appropriate? so system doesnt shut down
+        rotary valve should go to home-- safe mode
+        turn off heaters, etc.
+
+Prime function does a flush, by enabling sol_valve, then rinsing for 90 seconds for each number of rinses, then resets the sol_valve. The rinse function, is not time-based, and instead loops for each rinse, and does the following: move valve to water_in, full syringe, move valve to water_out, rehome synringe. Do we need to add flushing to the rinse method?
+
+What to set version to?
+
+
+Completed
+------------------------------------------------------
+remove purge from startup
+
+bugs:
+adjust dose, hardcode or hidden menu item ??
+dosing too much of material-- hard coded number of steps in stepper motor is drawing too much liquid by about 15% -- lower 15%
+
+                From syringe.cpp line 361:
+
+                // Calibrated by pulling syringe until stepper slips and taking 75% of steps.
+            //    constexpr int32_t max_step_count = 75'000;
+                // John: Changed to 95000 of steps (by Sherman).
+                // John: Changed to 75% of steps (by John).
+                //constexpr int32_t max_step_count = 95'000;
+                constexpr int32_t max_step_count = 65'000;
+
+                // Measured about 75 mL of liquid with 25,000 syringe steps.
+            //    constexpr uint32_t steps_per_ml = 333;
+                // John: Changed to 324 steps / ml (by Sherman)
+                constexpr uint32_t steps_per_ml = 324;
+
+
+user interface -- new layout
+
+Settings
+    1. Set Time
+    2. Dispense Time
+    3. Service Cycle
+    4. # of rinses
+1st Time
+    Purge and rinse
+Manual Mode
+    1. Rotary Valve & Syringe
+    2. Flush Valve
+    3. Overflow Switch
+    4. Rehome
+    5. First purge
+    6. Run single cycle
+    7. Run nonstop
+Alarms
+    1. Overheat
+    2. Overflow
+    3. Syringe - homing
+    4. Rotary Valve - homing
+    5. Flush Valve

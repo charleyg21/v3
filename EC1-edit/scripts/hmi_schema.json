@@ -1,0 +1,46 @@
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "name": { "$ref": "#/definitions/name" },
+            "lines": { "$ref": "#/definitions/lines" },
+            "children": { "$ref": "#/definitions/children" },
+            "callback": { "$ref": "#/definitions/callback" }
+        },
+        "minProperties": 4,
+        "maxProperties": 4,
+        "additionalProperties": false
+    },
+    "definitions": {
+        "name": {
+            "type": "string"
+        },
+        "lines": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+                "type": "string"
+            }
+        },
+        "children": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": { "$ref": "#/definitions/name" },
+                    "lines": { "$ref": "#/definitions/lines" },
+                    "children": { "$ref": "#/definitions/children" },
+                    "callback": { "$ref": "#/definitions/callback" }
+                },
+                "minProperties": 4,
+                "maxProperties": 4,
+                "additionalProperties": false
+            }
+        },
+        "callback": {
+            "type": [ "string", "null"]
+        }
+    }
+}
